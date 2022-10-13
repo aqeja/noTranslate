@@ -1,6 +1,8 @@
 # 不译
 将语音识别为文本，并翻译至其他语言。
 
+![演示](https://tva1.sinaimg.cn/large/008vxvgGly1h73sf6w2yeg30z70jte81.gif)
+
 # 使用场景
 - 远程会议
 - 听播客
