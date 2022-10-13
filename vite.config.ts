@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react";
 import path from "path";
 import pkg from "./package.json";
-// https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [reactRefresh()],
   resolve: {
@@ -18,8 +18,8 @@ export default defineConfig({
   },
   server: {
     https: {
-      key: "/Users/aqeja/localhost-key.pem",
-      cert: "/Users/aqeja/localhost.pem",
+      key: "./dev/localhost-key.pem",
+      cert: "./dev/localhost.pem",
     },
   },
 });

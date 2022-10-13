@@ -15,11 +15,11 @@ import {
   FormControl,
   Avatar,
   IconButton,
-  Tooltip,
 } from "@mui/material";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useQuery } from "react-query";
 import { ChevronRight, SettingsOutlined } from "@mui/icons-material";
+
 import {
   AppStatus,
   engineState,
@@ -129,7 +129,14 @@ const Launch = () => {
         <Box sx={{ p: 2 }} className="flex justify-end">
           <About />
 
-          <Button sx={{ ml: 1 }} variant="contained" disableElevation>
+          <Button
+            onClick={() => {
+              //
+            }}
+            sx={{ ml: 1 }}
+            variant="contained"
+            disableElevation
+          >
             使用说明
           </Button>
 
