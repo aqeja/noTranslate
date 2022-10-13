@@ -39,12 +39,12 @@ export function createEngineInstance(engineName: EngineNames, parent: Engine) {
   return new engine.constructor(parent);
 }
 
-export function createEngine<T>(engineName: EngineNames, ability: Abilities, parent: Engine) {
+export function createEngine(engineName: EngineNames, ability: Abilities, parent: Engine) {
   const engine = engines.find((item) => item.value === engineName);
   if (!engine || !engine.abilities.includes(ability)) {
     throw Error("unavaliable"); // TODO 报错完善
   }
-  return createEngineInstance(engineName, parent) as T;
+  return createEngineInstance(engineName, parent);
 }
 
 export class Engine {
@@ -74,8 +74,8 @@ export class Engine {
   toTextEngine: BaseToTextEngine;
   translateEngine: BaseTranslateEngine;
   constructor(toTextEngineName: EngineNames, translateEngineName: EngineNames) {
-    this.toTextEngine = createEngine(toTextEngineName, Abilities.toText, this);
-    this.translateEngine = createEngine(translateEngineName, Abilities.translate, this);
+    this.toTextEngine = createEngine(toTextEngineName, Abilities.toText, this) as BaseToTextEngine;
+    this.translateEngine = createEngine(translateEngineName, Abilities.translate, this) as BaseTranslateEngine;
   }
   reset() {
     this.dictionary.clear();
@@ -98,10 +98,10 @@ export class Engine {
     this.toTextEngine.toText(...args);
   }
   setToTextEngine(engineName: EngineNames) {
-    this.toTextEngine = createEngine(engineName, Abilities.toText, this);
+    this.toTextEngine = createEngine(engineName, Abilities.toText, this) as BaseToTextEngine;
   }
   setTranslateEngine(engineName: EngineNames) {
-    this.toTextEngine = createEngine(engineName, Abilities.translate, this);
+    this.translateEngine = createEngine(engineName, Abilities.translate, this) as BaseTranslateEngine;
   }
   stop() {
     this.toTextEngine.stop();

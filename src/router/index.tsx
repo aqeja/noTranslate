@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "@/components";
 import Home from "@/views/home";
-const About = React.lazy(() => import("@/views/about"));
+
 const LinearProgress = () => {
   return <div>loading...</div>;
 };
@@ -18,7 +18,6 @@ const RouterView = () => {
         <ErrorBoundary hasError={false}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

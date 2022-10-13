@@ -29,7 +29,7 @@ const Secrets = () => {
           return (
             <Form>
               <DialogTitle>配置项</DialogTitle>
-              <DialogContent sx={{ p: 2, pb: 8 }} dividers>
+              <DialogContent sx={{ p: 2 }} dividers>
                 <Typography color="text.secondary" fontSize="small" className="flex items-center justify-between">
                   腾讯语音识别
                   <a
@@ -107,6 +107,9 @@ const Secrets = () => {
                     onBlur={handleOnBlur(setFieldValue)}
                   />
                 </Box>
+                <Typography sx={{ mt: 4 }} color="text.secondary" fontSize="small">
+                  密钥等信息均存储在本地，不会上传至服务器，请放心使用。
+                </Typography>
               </DialogContent>
 
               <DialogActions>

@@ -45,11 +45,11 @@ const About = () => {
             <Link
               sx={{ mt: 2 }}
               className="text-center block"
-              href="https://github.com/aqeja/aqeja.github.io"
+              href="https://github.com/aqeja/noTranslate"
               target="_blank"
               rel="noreferrer"
             >
-              https://github.com/aqeja/aqeja.github.io
+              https://github.com/aqeja/noTranslate
             </Link>
             <Typography className="text-center" sx={{ mt: 2 }} fontSize="small" color="text.secondary">
               如果项目有帮助到你，希望你能给个Star👆
