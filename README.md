@@ -1,5 +1,5 @@
 # 不译
-将语音识别为文本，并翻译至其他语言。
+将电脑输出的音频或麦克风输入的音频转写为文本，并翻译至其他语言。项目链接：https://notranslate.pages.dev/
 
 ![演示](https://tva1.sinaimg.cn/large/008vxvgGly1h73sf6w2yeg30z70jte81.gif)
 
@@ -20,6 +20,7 @@
 
 4.在不译的设置项中填入步骤2和步骤3中所获取到的AppID等。
 
+![](https://tva1.sinaimg.cn/large/008vxvgGly1h74l5qxsr3g30z70jtq86.gif)
 # 其他
 
 密钥等相关信息均存储在用户本地，不会上传至服务器，请放心使用。本项目代码已上传至GitHub：https://github.com/aqeja/noTranslate
