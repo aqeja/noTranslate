@@ -16,11 +16,13 @@
 
 2.前往腾讯[语音识别](https://cloud.tencent.com/document/product/1093/48982)，注册为开发者后，按照[文档](https://cloud.tencent.com/document/product/1093/48982)生成生成 AppID、SecretID 和 SecretKey， 每个月有5个小时的免费时长。
 
-3.前往百度翻译的[通用翻译](https://fanyi-api.baidu.com/doc/21)，注册为开发者后，按照[文档](https://fanyi-api.baidu.com/doc/21)，获得APPID和SECRET(密钥)，每个月有100万字符的免费调用量。
+3.前往百度翻译的[通用翻译](https://fanyi-api.baidu.com/doc/21)，注册为开发者后，按照[文档](https://fanyi-api.baidu.com/doc/21)，获得APPID和SECRET(密钥)，每个月有100万字符的免费调用量。当然，如果无需翻译，则可以跳过这一步。
 
 4.在不译的设置项中填入步骤2和步骤3中所获取到的AppID等。
 
 ![](https://tva1.sinaimg.cn/large/008vxvgGly1h74l5qxsr3g30z70jtq86.gif)
+
+5.开始使用🎉
 # 其他
 
 密钥等相关信息均存储在用户本地，不会上传至服务器，请放心使用。本项目代码已上传至GitHub：https://github.com/aqeja/noTranslate
