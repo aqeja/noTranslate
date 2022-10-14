@@ -4,9 +4,9 @@
 ![演示](https://tva1.sinaimg.cn/large/008vxvgGly1h73sf6w2yeg30z70jte81.gif)
 
 # 使用场景
-- 远程会议
-- 听播客
-- 观看视频
+- 跨国远程会议
+- 听外语播客
+- 观看外语视频
 
 # 工作流程
 通过[BackgroundMusic](https://github.com/kyleneideck/BackgroundMusic)或同类虚拟声卡将系统音频输出模拟为麦克风音频输入，通过腾讯语音识别将音频生成文本，最后通过百度翻译将上一步所生成的文本翻译至其他语言。
