@@ -1,13 +1,9 @@
 import { BaiduEngine } from "../baidu";
+import { MicroSoftToTextEngine } from "../microsoft";
 import { TencentEngine } from "../tencent";
 import { LangItem, SupportedLangs } from "./baseEngine";
 import { BaseToTextEngine } from "./toText";
 import { BaseTranslateEngine, SentenceItem, TranslationStatus } from "./translate";
-
-/**
- * 分句标识
- */
-export const punctuations = /(，|,|。)\s*|(\.\s+)/g;
 
 /**
  * 引擎提供的能力
@@ -22,15 +18,30 @@ export const engines = [
     value: "tencent" as const,
     abilities: [Abilities.toText],
     constructor: TencentEngine,
+    exclusive: false,
   },
   {
     label: "百度",
     value: "baidu" as const,
     abilities: [Abilities.translate],
     constructor: BaiduEngine,
+    exclusive: false,
+  },
+  {
+    label: "微软",
+    value: "microsoft" as const,
+    abilities: [Abilities.toText, Abilities.translate],
+    constructor: MicroSoftToTextEngine,
+    exclusive: true,
   },
 ];
 
+export const toTextEngines = engines.filter((engine) => engine.abilities.includes(Abilities.toText));
+export const translateEngines = engines.filter((engine) => engine.abilities.includes(Abilities.translate));
+export const exclusiveEngines = engines.filter((engine) => engine.exclusive).map((item) => item.value) as (
+  | EngineNames
+  | ""
+)[];
 export type EngineNames = typeof engines[number]["value"];
 
 export function createEngineInstance(engineName: EngineNames, parent: Engine) {
@@ -71,11 +82,11 @@ export class Engine {
       ];
     }, []);
   }
-  toTextEngine: BaseToTextEngine;
-  translateEngine: BaseTranslateEngine;
+  toTextEngine!: BaseToTextEngine;
+  translateEngine!: BaseTranslateEngine;
   constructor(toTextEngineName: EngineNames, translateEngineName: EngineNames) {
-    this.toTextEngine = createEngine(toTextEngineName, Abilities.toText, this) as BaseToTextEngine;
-    this.translateEngine = createEngine(translateEngineName, Abilities.translate, this) as BaseTranslateEngine;
+    this.setToTextEngine(toTextEngineName);
+    this.setTranslateEngine(translateEngineName);
   }
   reset() {
     this.dictionary.clear();

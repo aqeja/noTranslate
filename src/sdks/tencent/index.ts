@@ -1,7 +1,7 @@
 import jsSHA from "jssha";
-import { EngineNames, punctuations } from "../common";
-import { BaseToTextEngine, ToTextOptions } from "../common/toText";
-import { secretsStorage } from "@/common/storage";
+import { EngineNames } from "../common";
+import { BaseToTextEngine, punctuations, ToTextOptions } from "../common/toText";
+import { appStorage } from "@/common/constants";
 import WebAudioSpeechRecognizer from "./webaudiospeechrecognizer";
 import { TranslationStatus } from "../common/translate";
 
@@ -61,7 +61,7 @@ export class TencentEngine extends BaseToTextEngine {
   private instance: WebAudioSpeechRecognizer | null = null;
   isWorking = false;
   private createInstance(modelType: string) {
-    const secrets = secretsStorage.get("secrets");
+    const secrets = appStorage.get("secrets");
     const AppId = secrets?.tencent.AppId ?? "";
     const SecretId = secrets?.tencent.SecretId ?? "";
     const SecretKey = secrets?.tencent.SecretKey ?? "";
@@ -108,13 +108,9 @@ export class TencentEngine extends BaseToTextEngine {
               value: "",
             });
           }
-          const translationExist = dictionary.has(item) && dictionary.get(item)?.status === TranslationStatus.success;
-          this.root.sentences.push({
-            key: Math.random(),
-            isSentence: !isPunctuation,
+          this.addSentence({
             source: item,
-            target: isPunctuation ? item : translationExist ? dictionary.get(item)?.value || "" : "",
-            status: isPunctuation ? TranslationStatus.success : dictionary.get(item)?.status || TranslationStatus.unset,
+            key: Math.random(),
           });
         });
         onChange(this.root.sentences);

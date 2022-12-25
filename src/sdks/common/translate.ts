@@ -62,6 +62,7 @@ export abstract class BaseTranslateEngine extends BaseEngine {
       )
       .map((item) => item.source)
       .slice(-5);
+    if (texts.length === 0) return;
     texts.forEach((item) => {
       updateFn((list) =>
         list.map((i) =>

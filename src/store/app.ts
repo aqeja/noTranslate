@@ -1,6 +1,7 @@
 import { atom } from "recoil";
-import { Engine } from "@/sdks/common";
+import { Engine, EngineNames } from "@/sdks/common";
 import type { SentenceItem } from "@/sdks/common/translate";
+import { appStorage } from "@/common/constants";
 
 export enum AppStatus {
   idle = "idle",
@@ -76,4 +77,14 @@ export const errorState = atom({
 export const scrollTimerState = atom<number | null>({
   key: "scrollTimer",
   default: null,
+});
+
+export const toTextEngineState = atom<EngineNames | "">({
+  key: "toTextEngine",
+  default: appStorage.get("preference")?.toTextEngine ?? "",
+});
+
+export const translateEngineState = atom<EngineNames | "">({
+  key: "translateEngine",
+  default: appStorage.get("preference")?.translateEngine ?? "",
 });

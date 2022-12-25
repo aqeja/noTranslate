@@ -1,11 +1,11 @@
-import { secretsStorage } from "@/common/storage";
 import SparkMD5 from "spark-md5";
-import { jsonp } from "../../common/request";
+import { appStorage } from "@/common/constants";
+import { jsonp } from "@/common/request";
 
 export const translate = ({ source, target, textList }: { source: string; target: string; textList: string[] }) => {
   const q = textList.join("\n");
   const salt = "salt";
-  const { AppId, Secret } = secretsStorage.get("secrets")?.baidu ?? { AppId: "", Secret: "" };
+  const { AppId, Secret } = appStorage.get("secrets")?.baidu ?? { AppId: "", Secret: "" };
   const signStr = `${AppId}${q}${salt}${Secret}`;
   const md5 = new SparkMD5();
   md5.append(signStr);

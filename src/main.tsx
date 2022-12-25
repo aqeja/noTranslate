@@ -14,6 +14,11 @@ const App: React.FC = ({ children }) => {
   const theme = useMemo(
     () =>
       createTheme({
+        typography: {
+          button: {
+            textTransform: "none",
+          },
+        },
         palette: {
           mode: prefersDarkMode ? "dark" : "light",
           secondary: {

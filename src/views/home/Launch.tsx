@@ -15,6 +15,8 @@ import {
   FormControl,
   Avatar,
   IconButton,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useQuery } from "react-query";
@@ -83,9 +85,11 @@ const Launch = () => {
     }
 
     engine.toText(sourceLang, {
+      target: targetLang,
       onChange: setList,
       onError,
       deviceId: mic.currentDevice,
+      translationEnabled,
     });
     setStatus(AppStatus.working);
     if (translationEnabled) {
@@ -183,11 +187,34 @@ const Launch = () => {
               }}
             >
               {engine.toTextEngine.langsList.map((lang) => (
-                <MenuItem key={lang.value} value={lang.value} disabled={targetLang === lang.value}>
+                <MenuItem
+                  key={lang.value}
+                  value={lang.value}
+                  disabled={targetLang === lang.value && translationEnabled}
+                >
                   {lang.label}
                 </MenuItem>
               ))}
             </Select>
+
+            {/* <Select
+              sx={{ mt: 1 }}
+              fullWidth
+              value={sourceLang}
+              onChange={(e) => {
+                setSoureLang(e.target.value);
+              }}
+            >
+              {engine.toTextEngine.langsList.map((lang) => (
+                <MenuItem
+                  key={lang.value}
+                  value={lang.value}
+                  disabled={targetLang === lang.value && translationEnabled}
+                >
+                  {lang.label}
+                </MenuItem>
+              ))}
+            </Select> */}
             <Box sx={{ mt: 2 }} className="flex items-center justify-between">
               <Typography fontSize="small" color="text.secondary">
                 将识别出的文本翻译至其他语言

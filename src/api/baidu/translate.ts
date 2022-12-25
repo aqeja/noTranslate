@@ -1,13 +1,12 @@
 import SparkMD5 from "spark-md5";
 import { jsonp } from "@/common/request";
-
-export const APP_ID = "20200602000483888";
-export const SECRET = "jtl7w4Ybsq53decwAi1k";
+import { appStorage } from "@/common/constants";
 
 export const translate = ({ source, target, textList }: { source: string; target: string; textList: string[] }) => {
   const q = textList.join("\n");
+  const { AppId, Secret } = appStorage.get("secrets")?.baidu ?? { AppId: "", Secret: "" };
   const salt = "salt";
-  const signStr = `${APP_ID}${q}${salt}${SECRET}`;
+  const signStr = `${AppId}${q}${salt}${Secret}`;
   const md5 = new SparkMD5();
   md5.append(signStr);
   const sign = md5.end();
@@ -28,7 +27,7 @@ export const translate = ({ source, target, textList }: { source: string; target
     q,
     from: source || "auto",
     to: target,
-    appid: APP_ID,
+    appid: AppId,
     salt,
     sign,
   });

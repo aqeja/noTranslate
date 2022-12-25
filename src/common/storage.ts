@@ -23,30 +23,3 @@ export default class Storage<T extends Record<string, any>> {
     window.localStorage.removeItem(key);
   }
 }
-
-type Secrets = {
-  secrets: {
-    tencent: {
-      AppId: string;
-      SecretId: string;
-      SecretKey: string;
-    };
-    baidu: {
-      AppId: string;
-      Secret: string;
-    };
-  };
-};
-export const secretsStorage = new Storage<Secrets>();
-
-export const DEFAULT_SECRETS = {
-  tencent: {
-    AppId: "",
-    SecretId: "",
-    SecretKey: "",
-  },
-  baidu: {
-    AppId: "",
-    Secret: "",
-  },
-};

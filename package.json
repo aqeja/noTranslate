@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "formik": "^2.2.9",
     "jssha": "^3.2.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.24.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-query": "^3.39.2",
@@ -22,7 +23,8 @@
     "recoil": "^0.7.5",
     "socket.io-client": "^4.5.2",
     "spark-md5": "^3.0.2",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

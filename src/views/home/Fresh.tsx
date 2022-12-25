@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import { useSetRecoilState } from "recoil";
 import { settingsOpenState } from "@/store/app";
-import { secretsStorage } from "@/common/storage";
+import { appStorage } from "@/common/constants";
 import { Close } from "@mui/icons-material";
 function isValueEmpty(v: Record<string, string> = {}) {
   const values = Object.values(v);
@@ -23,13 +23,13 @@ function AlertDialog() {
     setOpen(false);
   };
   useEffect(() => {
-    const secrets = secretsStorage.get("secrets");
+    const secrets = appStorage.get("secrets");
 
     const isBaiduUnSet = isValueEmpty(secrets?.baidu);
     const isTencentUnSet = isValueEmpty(secrets?.tencent);
     let timer: number | null = null;
     if (isBaiduUnSet && isTencentUnSet) {
-      timer = setTimeout(() => {
+      timer = window.setTimeout(() => {
         setOpen(true);
       }, 2000);
     }

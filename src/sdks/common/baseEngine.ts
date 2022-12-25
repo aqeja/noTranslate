@@ -1,4 +1,4 @@
-import { secretsStorage } from "@/common/storage";
+import { appStorage } from "@/common/constants";
 import { EngineNames } from ".";
 import { OnErrorArg } from "./toText";
 
@@ -30,10 +30,10 @@ export abstract class BaseEngine {
     }, []);
   }
   getLangLabel(lang: string) {
-    return this.langs[lang].label ?? "/";
+    return this.langs[lang].label ?? "N/A";
   }
   protected checkSecrets() {
-    const secrets = Object.values(secretsStorage.get("secrets")?.[this.name] || {});
+    const secrets = Object.values(appStorage.get("secrets")?.[this.name] || {});
     const isSecretsFilled = secrets.length > 0 && secrets.every((item) => item.trim().length > 0);
     if (!isSecretsFilled) {
       return {
